@@ -1,0 +1,26 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>te.jpg</file>
+        <file>Login.qml</file>
+        <file>TextField.qml</file>
+        <file>TouchButton.qml</file>
+        <file>Header.qml</file>
+        <file>ContactList.qml</file>
+        <file>main2.qml</file>
+        <file>AndroidDelegate.qml</file>
+        <file>ButtonPage.qml</file>
+        <file>toolBar.qml</file>
+    </qresource>
+    <qresource prefix="/icons">
+        <file>icons/add_icon.png</file>
+        <file>icons/add_icon_pressed.png</file>
+        <file>icons/back_icon.png</file>
+        <file>icons/delete_icon.png</file>
+        <file>icons/delete_icon_pressed.png</file>
+        <file>icons/reload_icon.png</file>
+        <file>icons/reload_icon_pressed.png</file>
+        <file>icons/share_icon.png</file>
+        <file>icons/share_icon_pressed.png</file>
+    </qresource>
+</RCC>
