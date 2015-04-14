@@ -14,10 +14,10 @@ ApplicationWindow {
         anchors.fill: parent
     }
 
-    ToolBar
+    Header
     {
         id: header
-        //text: "twaddleMSG2"
+        text: "twaddleMSG"
         //rightMargin: icon.width
 
     }
@@ -40,7 +40,8 @@ ApplicationWindow {
 
     StackView {
         id: stackView
-        anchors.fill: parent
+        anchors.top: header.bottom
+        //anchors.fill: parent
         // Implements back key navigation
         focus: true
         Keys.onReleased: if (event.key === Qt.Key_Back && stackView.depth > 1) {

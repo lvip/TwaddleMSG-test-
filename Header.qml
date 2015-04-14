@@ -9,6 +9,7 @@ Rectangle {
     height: 70 * scaleFactor
     color: "white"
 
+
     Item {
         height: parent.height
         width: parent.height

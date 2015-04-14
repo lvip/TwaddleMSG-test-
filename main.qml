@@ -3,17 +3,12 @@ import QtQuick.Window 2.2
 import QtQuick.Controls 1.2
 import Enginio 1.0
 
-ApplicationWindow {
-    visible: true
-    width: 360
-    height: 360
+Item {
+    width: parent.width
+    height: parent.height
     property real scaleFactor: Screen.pixelDensity / 5.0
     property int intScaleFactor: Math.max(1, scaleFactor)
-    Header {
-        id: header
-        text: "twaddleMSG"
-        //rightMargin: icon.width
-    }
+
 
     Image {
         id: image1
