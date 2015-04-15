@@ -8,7 +8,6 @@ Rectangle {
     width: parent.width
     height: 70 * scaleFactor
     color: "white"
-    z:1
 
     Item {
         height: parent.height

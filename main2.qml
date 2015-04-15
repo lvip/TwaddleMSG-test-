@@ -17,7 +17,9 @@ ApplicationWindow {
 
     Header
     {
-        id: header
+        id: header1
+        opacity: 0
+        z:-5
         text: "TwaddleMSG"
         //rightMargin: icon.width
 
@@ -43,10 +45,25 @@ ApplicationWindow {
             }
         }
     }
-
     StackView {
+        id: stackView2
+        z:1
+        anchors.top: header1.top
+        //anchors.fill: parent
+        // Implements back key navigation
+        focus: true
+        Keys.onReleased: if (event.key === Qt.Key_Back && stackView.depth > 1) {
+                             stackView.pop();
+                             event.accepted = true;
+                         }
+
+        initialItem: Login{}
+    }
+   StackView {
         id: stackView
-        anchors.top: header.bottom
+        opacity: 0
+        visible: false
+        anchors.top: header1.bottom
         //anchors.fill: parent
         // Implements back key navigation
         focus: true

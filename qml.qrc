@@ -11,7 +11,6 @@
         <file>AndroidDelegate.qml</file>
         <file>ButtonPage.qml</file>
         <file>contact.qml</file>
-        <file>chat.qml</file>
     </qresource>
     <qresource prefix="/icons">
         <file>icons/add_icon.png</file>
@@ -29,5 +28,15 @@
         <file>images/button_pressed.png</file>
         <file>images/textinput.png</file>
         <file>images/exit.png</file>
+        <file>images/clear.png</file>
+        <file>images/lineedit-bg.png</file>
+        <file>images/Logo.jpg</file>
+        <file>images/default.png</file>
+    </qresource>
+    <qresource prefix="/chat">
+        <file>chat.qml</file>
+        <file>InputBox.qml</file>
+        <file>Button.qml</file>
+        <file>Search.qml</file>
     </qresource>
 </RCC>

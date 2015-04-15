@@ -5,39 +5,7 @@ Rectangle {
     width: 400
     height: 600
 
-    Rectangle {
-        id: header
-        anchors.top: parent.top
-        width: parent.width
-        height: 70 * scaleFactor
-        color: "white"
-        Rectangle {
-            width: parent.width ; height: 1
-            anchors.bottom: parent.bottom
-            color: "#bbb"
-        }
-    }
 
-    BorderImage {
-        id: input
-
-        width: parent.width
-        anchors.top: header.bottom
-        anchors.bottom: parent.bottom
-        border.left: 5; border.top: 5
-        border.right: 5; border.bottom: 5
-
-        Rectangle {
-            y: -1 ; height: 1
-            width: parent.width
-            color: "#bbb"
-        }
-        Rectangle {
-            y: 0 ; height: 1
-            width: parent.width
-            color: "white"
-        }
-    }
     Column {
         anchors.centerIn: parent
         anchors.alignWhenCentered: true
@@ -73,6 +41,8 @@ Rectangle {
                 onClicked: {
                     stackView2.opacity=0
                     stackView2.z=-3
+                    header1.opacity=1
+                    header1.z=5
                     stackView.visible=true
                     stackView.opacity=1
                 }
