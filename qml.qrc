@@ -38,5 +38,6 @@
         <file>InputBox.qml</file>
         <file>Button.qml</file>
         <file>Search.qml</file>
+        <file>ButtonM.qml</file>
     </qresource>
 </RCC>

@@ -1,6 +1,7 @@
 
-
 import QtQuick 2.2
+import QtQuick.Controls 1.3
+//import QtQuick.Controls.Styles 1.1
 import QtBluetooth 5.3
 
 Item {
@@ -135,7 +136,7 @@ Item {
 
             }
 
-            Button {
+            ButtonM {
                 id: sendButton
                 anchors.right: parent.right
                 label: "Send"
@@ -159,10 +160,37 @@ Item {
                     height: parent.height-5
                     anchors.centerIn: parent
                     model: chatContent
-                    spacing: 5
+                    spacing: 10
                     clip: true
                     delegate: Rectangle {
                         //z:6
+                        Menu { id: contextMenu
+                            MenuItem {
+                                text: qsTr('Копировать сообщение')
+                                shortcut: "Ctrl+C"
+                                //onTriggered: stackView.push(Qt.resolvedUrl("/chat/chat.qml"))
+                            }
+                            MenuItem {
+                                text: qsTr('Удалить сообщение')
+                                shortcut: "Ctrl+DEL"
+                                onTriggered: parent.removeItem()
+                            }
+                            MenuItem {
+                                text: qsTr('Информация о сообщении')
+                                shortcut: "Ctrl+I"
+                                //onTriggered: stackView.push(Qt.resolvedUrl("contact.qml"))
+                            }
+                        }
+                        MouseArea{
+                            anchors.fill: parent
+                            acceptedButtons: Qt.LeftButton | Qt.RightButton
+                             onClicked:         if(mouse.button & Qt.RightButton) {
+                                                    contextMenu.popup()
+                                                    //stackView.push(Qt.resolvedUrl("contact.qml"))
+                                                }
+                                                else{
+                                                        stackView.push(Qt.resolvedUrl("/chat/chat.qml"))}
+                        }
                           width: parent.width
                           height: 40
                           radius: 10
