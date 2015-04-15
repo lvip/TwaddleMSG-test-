@@ -94,6 +94,7 @@ Item {
         opacity: 1
     }
 
+
     Rectangle {
         id: chatBox
         opacity: 0
@@ -142,6 +143,12 @@ Item {
                 label: "Send"
                 onButtonClick: chatBox.sendMessage()
             }
+            ButtonM {
+                id: clearA
+                anchors.right: sendButton.left
+                label: "Удалить всё"
+                onButtonClick: chatContent.clear()
+            }
 
 
             Rectangle {
@@ -162,6 +169,9 @@ Item {
                     model: chatContent
                     spacing: 10
                     clip: true
+                    add: Transition { NumberAnimation { properties: "y"; from: parent.height; duration: 250 } }
+                    removeDisplaced: Transition { NumberAnimation { properties: "y"; duration: 300 } }
+                    remove: Transition { NumberAnimation { property: "opacity"; to: 0; duration: 300 } }
                     delegate: Rectangle {
                         //z:6
                         Menu { id: contextMenu
@@ -173,7 +183,7 @@ Item {
                             MenuItem {
                                 text: qsTr('Удалить сообщение')
                                 shortcut: "Ctrl+DEL"
-                                onTriggered: parent.removeItem()
+                                onTriggered: chatContent.remove(index)
                             }
                             MenuItem {
                                 text: qsTr('Информация о сообщении')
@@ -188,8 +198,7 @@ Item {
                                                     contextMenu.popup()
                                                     //stackView.push(Qt.resolvedUrl("contact.qml"))
                                                 }
-                                                else{
-                                                        stackView.push(Qt.resolvedUrl("/chat/chat.qml"))}
+                                                else{}
                         }
                           width: parent.width
                           height: 40
