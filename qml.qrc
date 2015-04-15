@@ -10,7 +10,6 @@
         <file>main2.qml</file>
         <file>AndroidDelegate.qml</file>
         <file>ButtonPage.qml</file>
-        <file>toolBar.qml</file>
     </qresource>
     <qresource prefix="/icons">
         <file>icons/add_icon.png</file>
@@ -22,5 +21,11 @@
         <file>icons/reload_icon_pressed.png</file>
         <file>icons/share_icon.png</file>
         <file>icons/share_icon_pressed.png</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file>images/button_default.png</file>
+        <file>images/button_pressed.png</file>
+        <file>images/textinput.png</file>
+        <file>images/exit.png</file>
     </qresource>
 </RCC>

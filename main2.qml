@@ -2,11 +2,12 @@
 import QtQuick 2.3
 import QtQuick.Window 2.2
 import QtQuick.Controls 1.2
+import QtQuick.Controls.Styles 1.1
 
 ApplicationWindow {
     visible: true
     width: 800
-    height: 1280
+    height: 600
     property real scaleFactor: Screen.pixelDensity / 5.0
     property int intScaleFactor: Math.max(1, scaleFactor)
     Rectangle {
@@ -17,24 +18,29 @@ ApplicationWindow {
     Header
     {
         id: header
-        text: "twaddleMSG"
+        text: "TwaddleMSG"
         //rightMargin: icon.width
 
     }
 
-    ListModel {
-        id: pageModel
-        ListElement {
-            title: "mainpage"
-            page: "/main.qml"
-        }
-        ListElement {
-            title: "Настройки"
-            page: "/ButtonPage.qml"
-        }
-        ListElement {
-            title: "Список контактов"
-            page: "content/ProgressBarPage.qml"
+    Item
+    {
+        id:itemL
+        z:-1
+        ListModel {
+            id: pageModel
+            ListElement {
+                title: "mainpage"
+                page: "/main.qml"
+            }
+            ListElement {
+                title: "Настройки"
+                page: "/ButtonPage.qml"
+            }
+            ListElement {
+                title: "Список контактов"
+                page: "ContactList.qml"
+            }
         }
     }
 
@@ -58,6 +64,58 @@ ApplicationWindow {
                 delegate: AndroidDelegate {
                     text: title
                     onClicked: stackView.push(Qt.resolvedUrl(page))
+                }
+            }
+        }
+    }
+
+    Component {
+        id: touchStyle
+        ButtonStyle {
+            panel: Item {
+                implicitHeight: 50*scaleFactor
+                implicitWidth: 200*scaleFactor
+                BorderImage {
+                    anchors.fill: parent
+                    antialiasing: true
+                    border.bottom: 8
+                    border.top: 8
+                    border.left: 8
+                    border.right: 8
+                    anchors.margins: control.pressed ? -4 : 0
+                    source: control.pressed ? "/images/images/button_pressed.png" : "/images/images/button_default.png"
+                    Text {
+                        text: control.text
+                        anchors.centerIn: parent
+                        color: "white"
+                        font.pixelSize: 23
+                        renderType: Text.NativeRendering
+                    }
+                }
+            }
+        }
+    }
+
+    Button {
+        text: "Выход"
+        style: touchStyle
+        anchors.bottom : parent.bottom
+        z:1
+        onClicked: Qt.quit()
+        Item {
+            height: parent.height
+            width: parent.height
+            id: backButton
+
+            Image {
+                anchors.centerIn: parent
+                scale:0.1
+                width:  implicitWidth * scaleFactor
+                height: implicitHeight * scaleFactor
+                source: "/images/images/exit.png"
+                MouseArea {
+                    anchors.fill: parent
+                    anchors.margins: - 10
                 }
             }
         }

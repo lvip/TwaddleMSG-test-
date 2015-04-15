@@ -38,6 +38,11 @@ Item {
             style: touchStyle
             text: "Press me too"
         }
+        Slider {
+            anchors.margins: 20
+            style: sliderStyle1
+            value: 0.5
+        }
 
         Button {
             anchors.margins: 20
@@ -72,7 +77,7 @@ Item {
                     border.left: 8
                     border.right: 8
                     anchors.margins: control.pressed ? -4 : 0
-                    source: control.pressed ? "../images/button_pressed.png" : "../images/button_default.png"
+                    source: control.pressed ? "/images/images/button_pressed.png" : "/images/images/button_default.png"
                     Text {
                         text: control.text
                         anchors.centerIn: parent
@@ -84,6 +89,38 @@ Item {
             }
         }
     }
+    Component {
+        id: sliderStyle1
+        SliderStyle {
+            handle: Rectangle {
+                width: 30
+                height: 30
+                radius: height
+                antialiasing: true
+                color: Qt.lighter("#468bb7", 1.2)
+            }
+
+            groove: Item {
+                implicitHeight: 50
+                implicitWidth: 400
+                Rectangle {
+                    height: 8
+                    width: parent.width
+                    anchors.verticalCenter: parent.verticalCenter
+                    color: "#444"
+                    opacity: 0.8
+                    Rectangle {
+                        antialiasing: true
+                        radius: 1
+                        color: "#468bb7"
+                        height: parent.height
+                        width: parent.width * control.value / control.maximumValue
+                    }
+                }
+            }
+        }
+    }
+
 
     Component {
         id: switchStyle

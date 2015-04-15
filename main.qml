@@ -1,7 +1,6 @@
 import QtQuick 2.3
 import QtQuick.Window 2.2
 import QtQuick.Controls 1.2
-import Enginio 1.0
 
 Item {
     width: parent.width
@@ -40,7 +39,7 @@ Item {
     Rectangle
    {
        id: exit
-       anchors.bottom: parent.bottom
+       anchors.top: parent.header.bottom
        color: "#aaf4f4"
        width: 100
        height: 50

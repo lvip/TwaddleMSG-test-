@@ -1,3 +1,4 @@
+
 import QtQuick 2.2
 import QtQuick.Controls 1.2
 import QtQuick.Controls.Styles 1.1
@@ -10,9 +11,9 @@ ScrollView {
 
     ListView {
         anchors.fill: parent
-        model: 100
+        model: 15
         delegate: AndroidDelegate {
-            text: "Item #" + modelData
+            text: "Контакт #" + modelData
         }
     }
 
