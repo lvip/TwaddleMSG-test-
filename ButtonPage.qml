@@ -43,6 +43,11 @@ Item {
             style: sliderStyle1
             value: 0.5
         }
+        Slider {
+            anchors.margins: 20
+            style: sliderStyle1
+            value: 0.5
+        }
 
         Button {
             anchors.margins: 20

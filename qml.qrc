@@ -10,6 +10,8 @@
         <file>main2.qml</file>
         <file>AndroidDelegate.qml</file>
         <file>ButtonPage.qml</file>
+        <file>contact.qml</file>
+        <file>chat.qml</file>
     </qresource>
     <qresource prefix="/icons">
         <file>icons/add_icon.png</file>

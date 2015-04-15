@@ -14,6 +14,7 @@ ScrollView {
         model: 15
         delegate: AndroidDelegate {
             text: "Контакт #" + modelData
+             onClicked: stackView.push(Qt.resolvedUrl("contact.qml"))
         }
     }
 

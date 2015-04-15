@@ -24,7 +24,6 @@ Rectangle {
         width: parent.width
         anchors.top: header.bottom
         anchors.bottom: parent.bottom
-        source: "qrc:images/delegate.png"
         border.left: 5; border.top: 5
         border.right: 5; border.bottom: 5
 
@@ -71,7 +70,12 @@ Rectangle {
                 text: "Login"
                 baseColor: "#7a5"
                 width: (parent.width - parent.spacing)/2
-                onClicked: login()
+                onClicked: {
+                    stackView2.opacity=0
+                    stackView2.z=-3
+                    stackView.visible=true
+                    stackView.opacity=1
+                }
                 enabled: nameInput.text.length && passwordInput.text.length
                 KeyNavigation.tab: registerButton
             }
