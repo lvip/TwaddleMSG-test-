@@ -30,8 +30,9 @@ Item {
         anchors.centerIn: parent
 
         Button {
-            text: "Press me"
+            text: "Настройка камеры"
             style: touchStyle
+            onClicked:stackView.push(Qt.resolvedUrl("/camera/camera/declarative-camera.qml"))
         }
 
         Button {

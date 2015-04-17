@@ -1,5 +1,5 @@
 
-import QtQuick 2.2
+import QtQuick 2.3
 import QtQuick.Controls 1.3
 //import QtQuick.Controls.Styles 1.1
 import QtBluetooth 5.3
@@ -112,7 +112,7 @@ Item {
             var hasFocus = input.focus;
             input.focus = false;
 
-            var data = input.text.toUpperCase()
+            var data = input.text
             input.clear()
 
             chatContent.append({content: "Me: " + data})
@@ -153,73 +153,125 @@ Item {
 
             Rectangle {
                 id: rectangle1
-                height: parent.height - input.height - 15
+                height: parent.height - input.height - 50
                 width: parent.width;
-                color: "#d7d6d5"
-                anchors.bottom: parent.bottom
+                color: "#aad6d5"
+                anchors.top: input.bottom
                 border.color: "black"
                 border.width: 1
                 radius: 5
+                ScrollView {
+                    width: parent.width
+                    height: parent.height
+                   // anchors.margins: 5
+                    flickableItem.interactive: true
+                    ListView {
+                        id: chatView
+                        delegate:delegateit
+                        anchors.margins: 50
 
-                ListView {
-                    id: chatView
-                    width: parent.width-5
-                    height: parent.height-5
-                    anchors.centerIn: parent
-                    model: chatContent
-                    spacing: 10
-                    clip: true
-                    add: Transition { NumberAnimation { properties: "y"; from: parent.height; duration: 250 } }
-                    removeDisplaced: Transition { NumberAnimation { properties: "y"; duration: 300 } }
-                    remove: Transition { NumberAnimation { property: "opacity"; to: 0; duration: 300 } }
-                    delegate: Rectangle {
-                        //z:6
-                        Menu { id: contextMenu
-                            MenuItem {
-                                text: qsTr('Копировать сообщение')
-                                shortcut: "Ctrl+C"
-                                //onTriggered: stackView.push(Qt.resolvedUrl("/chat/chat.qml"))
-                            }
-                            MenuItem {
-                                text: qsTr('Удалить сообщение')
-                                shortcut: "Ctrl+DEL"
-                                onTriggered: chatContent.remove(index)
-                            }
-                            MenuItem {
-                                text: qsTr('Информация о сообщении')
-                                shortcut: "Ctrl+I"
-                                //onTriggered: stackView.push(Qt.resolvedUrl("contact.qml"))
-                            }
-                        }
-                        MouseArea{
-                            anchors.fill: parent
-                            acceptedButtons: Qt.LeftButton | Qt.RightButton
-                             onClicked:         if(mouse.button & Qt.RightButton) {
-                                                    contextMenu.popup()
-                                                    //stackView.push(Qt.resolvedUrl("contact.qml"))
-                                                }
-                                                else{}
-                        }
-                          width: parent.width
-                          height: 40
-                          radius: 10
-                          color:"gray"
-                          Text {
-                              //z:7
-                              anchors.fill: parent
-                              horizontalAlignment: Text.AlignHCenter
-                              verticalAlignment: Text.AlignVCenter
-                              elide: Text.ElideRight
-                              wrapMode: Text.Wrap
-                              renderType: Text.NativeRendering
-                              text: modelData
-                          }
-                      }
+                        width: parent.width-5
+                        height: parent.height-5
+                        //anchors.centerIn: parent
+                        model: chatContent
+                        spacing: 10
+                        clip: true
+
+                        add: Transition { NumberAnimation { properties: "y"; from: parent.height; duration: 250 } }
+                        removeDisplaced: Transition { NumberAnimation { properties: "y"; duration: 300 } }
+                        remove: Transition { NumberAnimation { property: "opacity"; to: 0; duration: 300 } }
+                    }
                 }
             }
         }
     }
 
+    Component {
+        id: delegateit
+
+        //делегат для листа
+        BorderImage {
+            id: item
+           //z:6
+           width: parent.width
+           anchors.margins: 10
+           height: 40
+           border.left: 5; border.top: 5
+           border.right: 5; border.bottom: 5
+           //color:"gray"
+           //color: index % 2 === 0 ? "#EEE" : "#DDD"
+           source: mouse.pressed ? "/chat/chat/delegate_pressed.png" : "/chat/chat/delegate.png"
+           Component.onCompleted: showAnim.start();
+           transform: Rotation { id:rt; origin.x: width; origin.y: height; axis { x: 0.3; y: 1; z: 0 } angle: 0}//
+           SequentialAnimation {
+                 id: showAnim
+                 running: false
+                 RotationAnimation { target: rt; from: 180; to: 0; duration: 800; easing.type: Easing.OutBack; property: "angle" }
+             }
+           MouseArea {
+               id: mouse
+               anchors.fill: parent
+               hoverEnabled: true
+               onClicked: {
+                   if (index !== -1 && _synced) {
+                       enginioModel.setProperty(index, "completed", !completed)
+                   }
+               }
+           }
+           Image {
+               id: checkbox
+               anchors.left: parent.left
+               anchors.leftMargin: 16
+               width: 32
+               fillMode: Image.PreserveAspectFit
+               anchors.verticalCenter: parent.verticalCenter
+               source: "/chat/chat/checkbox_checked.png"
+           }
+           Menu { id: contextMenu
+               MenuItem {
+                   text: qsTr('Копировать сообщение')
+                   shortcut: "Ctrl+C"
+                   //onTriggered:   item.
+               }
+               MenuItem {
+                   text: qsTr('Удалить сообщение')
+                   shortcut: "Ctrl+DEL"
+                   onTriggered: chatContent.remove(index)
+               }
+               MenuItem {
+                   text: qsTr('Информация о сообщении')
+                   shortcut: "Ctrl+I"
+                   //onTriggered: stackView.push(Qt.resolvedUrl("contact.qml"))
+               }
+           }
+           MouseArea{
+               anchors.fill: parent
+               acceptedButtons: Qt.LeftButton | Qt.RightButton
+                onClicked:         if(mouse.button & Qt.RightButton) {
+                                       contextMenu.popup()
+                                       //stackView.push(Qt.resolvedUrl("contact.qml"))
+                                   }
+                                   else{}
+           }
+
+             Text {
+                 //z:7
+                 id:textMSG
+                 anchors.fill: parent
+                 horizontalAlignment: Text.AlignHCenter
+                 verticalAlignment: Text.AlignVCenter
+                 elide: Text.ElideRight
+                 anchors.verticalCenter: parent.verticalCenter
+                 //anchors.left: checkbox.right
+                 anchors.right: parent.right
+                 anchors.leftMargin: 12
+                 anchors.rightMargin: 40
+                 wrapMode: Text.Wrap
+                 renderType: Text.NativeRendering
+                 text: modelData
+             }
+         }
+        }
     states: [
         State {
             name: "begin"

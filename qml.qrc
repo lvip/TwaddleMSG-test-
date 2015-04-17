@@ -39,5 +39,39 @@
         <file>Button.qml</file>
         <file>Search.qml</file>
         <file>ButtonM.qml</file>
+        <file>chat/delegate.png</file>
+        <file>chat/delegate_pressed.png</file>
+        <file>chat/checkbox.png</file>
+        <file>chat/checkbox_checked.png</file>
+    </qresource>
+    <qresource prefix="/youtube">
+        <file>youtube.qml</file>
+    </qresource>
+    <qresource prefix="/camera">
+        <file>camera/VideoCaptureControls.qml</file>
+        <file>camera/VideoPreview.qml</file>
+        <file>camera/ZoomControl.qml</file>
+        <file>camera/CameraButton.qml</file>
+        <file>camera/CameraListButton.qml</file>
+        <file>camera/CameraListPopup.qml</file>
+        <file>camera/CameraPropertyButton.qml</file>
+        <file>camera/CameraPropertyPopup.qml</file>
+        <file>camera/declarative-camera.qml</file>
+        <file>camera/FocusButton.qml</file>
+        <file>camera/PhotoCaptureControls.qml</file>
+        <file>camera/PhotoPreview.qml</file>
+        <file>camera/Popup.qml</file>
+        <file>camera/images/camera_auto_mode.png</file>
+        <file>camera/images/camera_camera_setting.png</file>
+        <file>camera/images/camera_flash_auto.png</file>
+        <file>camera/images/camera_flash_fill.png</file>
+        <file>camera/images/camera_flash_off.png</file>
+        <file>camera/images/camera_flash_redeye.png</file>
+        <file>camera/images/camera_white_balance_cloudy.png</file>
+        <file>camera/images/camera_white_balance_flourescent.png</file>
+        <file>camera/images/camera_white_balance_incandescent.png</file>
+        <file>camera/images/camera_white_balance_sunny.png</file>
+        <file>camera/images/toolbutton.png</file>
+        <file>camera/images/toolbutton.sci</file>
     </qresource>
 </RCC>

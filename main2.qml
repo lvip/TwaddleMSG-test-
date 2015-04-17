@@ -43,6 +43,10 @@ ApplicationWindow {
                 title: "Список контактов"
                 page: "ContactList.qml"
             }
+            ListElement {
+                title: "Просмотр ютуба"
+                page: "/youtube/youtube.qml"
+            }
         }
     }
     StackView {
