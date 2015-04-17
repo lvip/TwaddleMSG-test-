@@ -15,6 +15,7 @@ ApplicationWindow {
         anchors.fill: parent
     }
 
+
     Header
     {
         id: header1

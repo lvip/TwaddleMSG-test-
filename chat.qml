@@ -96,6 +96,7 @@ Item {
 
 
     Rectangle {
+
         id: chatBox
         opacity: 0
         anchors.centerIn: top
@@ -253,10 +254,16 @@ Item {
                                    }
                                    else{}
            }
-
+           Text{
+               id:dataT
+               z:20
+               font.pixelSize: 10
+               text: currentDateTime
+           }
              Text {
                  //z:7
                  id:textMSG
+                 anchors.top: dataT.bottom
                  anchors.fill: parent
                  horizontalAlignment: Text.AlignHCenter
                  verticalAlignment: Text.AlignVCenter
