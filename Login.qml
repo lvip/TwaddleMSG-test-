@@ -38,14 +38,7 @@ Rectangle {
                 text: "Login"
                 baseColor: "#7a5"
                 width: (parent.width - parent.spacing)/2
-                onClicked: {
-                    stackView2.opacity=0
-                    stackView2.z=-3
-                    header1.opacity=1
-                    header1.z=5
-                    stackView.visible=true
-                    stackView.opacity=1
-                }
+                onClicked: login()
                 enabled: nameInput.text.length && passwordInput.text.length
                 KeyNavigation.tab: registerButton
             }
@@ -68,4 +61,14 @@ Rectangle {
         font.pixelSize: 18 * scaleFactor
         color: "#444"
     }
+    function login() {
+        stackView2.opacity=0
+        stackView2.z=-3
+        stackView2.visible=false
+        header1.opacity=1
+        header1.z=5
+        stackView.visible=true
+        stackView.opacity=1
+    }
+
 }

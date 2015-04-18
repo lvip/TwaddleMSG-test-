@@ -3,7 +3,9 @@ TEMPLATE = app
 QT += qml quick core
 
 SOURCES += main.cpp \
-    receiver.cpp
+    receiver.cpp \
+    server/myserver.cpp \
+    server/mythread.cpp
 
 RESOURCES += qml.qrc
 
@@ -14,4 +16,6 @@ QML_IMPORT_PATH =
 include(deployment.pri)
 
 HEADERS += \
-    receiver.h
+    receiver.h \
+    server/myserver.h \
+    server/mythread.h

@@ -128,25 +128,32 @@ Item {
         Item {
             anchors.fill: parent
             anchors.margins: 10
+            anchors.bottom: parent.bottomx
 
-            InputBox {
+            InputBox
+            {
+
                 id: input
                 Keys.onReturnPressed: chatBox.sendMessage()
                 height: sendButton.height
-                width: parent.width - sendButton.width - 15
+                width: parent.width -clearA.width -sendButton.width - 15
                 anchors.left: parent.left
+                anchors.top: rectangle1.bottom
+
 
             }
 
             ButtonM {
                 id: sendButton
-                anchors.right: parent.right
+                anchors.left: clearA.right
+                anchors.top: rectangle1.bottom
                 label: "Send"
                 onButtonClick: chatBox.sendMessage()
             }
             ButtonM {
                 id: clearA
-                anchors.right: sendButton.left
+                anchors.left: input.right
+                anchors.top: rectangle1.bottom
                 label: "Удалить всё"
                 onButtonClick: chatContent.clear()
             }
@@ -154,10 +161,11 @@ Item {
 
             Rectangle {
                 id: rectangle1
-                height: parent.height - input.height - 50
+                //height: parent.height - input.height - 50
+                height: parent.height - input.height - 100
                 width: parent.width;
                 color: "#aad6d5"
-                anchors.top: input.bottom
+                anchors.top: parent.top
                 border.color: "black"
                 border.width: 1
                 radius: 5
@@ -169,7 +177,7 @@ Item {
                     ListView {
                         id: chatView
                         delegate:delegateit
-                        anchors.margins: 50
+                        anchors.margins: 30
 
                         width: parent.width-5
                         height: parent.height-5
@@ -186,6 +194,7 @@ Item {
         }
     }
 
+    //элемент чата
     Component {
         id: delegateit
 
@@ -201,7 +210,6 @@ Item {
            //color:"gray"
            //color: index % 2 === 0 ? "#EEE" : "#DDD"
            source: mouse.pressed ? "/chat/chat/delegate_pressed.png" : "/chat/chat/delegate.png"
-           Component.onCompleted: showAnim.start();
            transform: Rotation { id:rt; origin.x: width; origin.y: height; axis { x: 0.3; y: 1; z: 0 } angle: 0}//
            SequentialAnimation {
                  id: showAnim
@@ -290,6 +298,7 @@ Item {
                selectByMouse: true
            }*/
              TextInput {
+
                  id: textInput2
                  readOnly: true
                  anchors.margins: 5

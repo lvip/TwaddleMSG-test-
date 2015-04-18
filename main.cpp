@@ -2,6 +2,8 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include "receiver.h"
+#include "server/myserver.h"
+
 
 
 int main(int argc, char *argv[])
@@ -14,5 +16,7 @@ int main(int argc, char *argv[])
     QQmlContext* ctx = engine.rootContext();
     ctx->setContextProperty("receiver", &receiver);
     engine.load(QUrl(QStringLiteral("qrc:/main2.qml")));
+    MyServer server;
+    server.startServer();
     return app.exec();
 }

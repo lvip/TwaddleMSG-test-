@@ -27,6 +27,11 @@ ScrollView {
                     onTriggered: stackView.push(Qt.resolvedUrl("/chat/chat.qml"))
                 }
                 MenuItem {
+                    text: qsTr('Сделать заметку о контакте')
+                    shortcut: "Ctrl+L"
+                    onTriggered: stackView.push(Qt.resolvedUrl("/chat/chat.qml"))
+                }
+                MenuItem {
                     text: qsTr('Информация о контакте')
                     shortcut: "Ctrl+I"
                     onTriggered: stackView.push(Qt.resolvedUrl("contact.qml"))
