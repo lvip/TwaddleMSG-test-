@@ -177,7 +177,6 @@ Item {
                         model: chatContent
                         spacing: 10
                         clip: true
-
                         add: Transition { NumberAnimation { properties: "y"; from: parent.height; duration: 250 } }
                         removeDisplaced: Transition { NumberAnimation { properties: "y"; duration: 300 } }
                         remove: Transition { NumberAnimation { property: "opacity"; to: 0; duration: 300 } }
@@ -196,7 +195,7 @@ Item {
            //z:6
            width: parent.width
            anchors.margins: 10
-           height: 40
+           height: textInput2.contentHeight+30
            border.left: 5; border.top: 5
            border.right: 5; border.bottom: 5
            //color:"gray"
@@ -231,7 +230,7 @@ Item {
            Menu { id: contextMenu
                MenuItem {
                    text: qsTr('Копировать сообщение')
-                   shortcut: "Ctrl+C"
+                  // shortcut: "Ctrl+C"
                    //onTriggered:   item.
                }
                MenuItem {
@@ -258,24 +257,53 @@ Item {
                id:dataT
                z:20
                font.pixelSize: 10
-               text: currentDateTime
+               text: receiver.getCurrentDateTime1()
+               Connections {
+                   target: receiver
+                   onSendToQml: {
+                       console.log("Received in QML from C++: " + count)
+                   }
+               }
+               //Connections {
+             //      target: applicationData1
+               //    onDataChanged: console.log("The application data changed!")
+               //}
            }
-             Text {
-                 //z:7
-                 id:textMSG
-                 anchors.top: dataT.bottom
-                 anchors.fill: parent
-                 horizontalAlignment: Text.AlignHCenter
-                 verticalAlignment: Text.AlignVCenter
-                 elide: Text.ElideRight
-                 anchors.verticalCenter: parent.verticalCenter
-                 //anchors.left: checkbox.right
+        /* TextInput {
+               z:7
+               id:textMSG
+               readOnly: true
+               focus:true
+               anchors.top: dataT.bottom
+               anchors.fill: parent
+               horizontalAlignment: Text.AlignHCenter
+               verticalAlignment: Text.AlignVCenter
+               //elide: Text.ElideRight
+               anchors.verticalCenter: parent.verticalCenter
+               //anchors.left: checkbox.right
+               anchors.right: parent.right
+               anchors.leftMargin: 12
+               anchors.rightMargin: 40
+               wrapMode: Text.Wrap
+               //renderType: Text.NativeRendering
+               text: modelData
+               selectByMouse: true
+           }*/
+             TextInput {
+                 id: textInput2
+                 readOnly: true
+                 anchors.margins: 5
+                 anchors.left: checkbox.right
                  anchors.right: parent.right
-                 anchors.leftMargin: 12
-                 anchors.rightMargin: 40
-                 wrapMode: Text.Wrap
-                 renderType: Text.NativeRendering
+                 anchors.top: parent.top
+                 anchors.bottom: parent.bottom
+                 horizontalAlignment: Text.AlignLeft
+                 verticalAlignment: Text.AlignVCenter
+                 focus: true
+                 wrapMode: Text.WrapAnywhere
+                 selectByMouse: true
                  text: modelData
+                 font.pixelSize: 15
              }
          }
         }

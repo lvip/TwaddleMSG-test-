@@ -36,28 +36,5 @@ Item {
             }
 
     }
-    Rectangle
-   {
-       id: exit
-       anchors.top: parent.header.bottom
-       color: "#aaf4f4"
-       width: 100
-       height: 50
-       Text {
-           id: todoText
-           text: "Выход"
-           font.family: "Gill Sans Ultra Bold"
-           font.pixelSize: 26
-           color: "#333"
-
-           anchors.fill: parent
-           elide: Text.ElideRight
-       }
-       MouseArea
-       {
-           anchors.fill: parent
-           onClicked: Qt.quit();
-       }
-   }
 
 }
