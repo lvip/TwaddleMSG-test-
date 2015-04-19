@@ -128,18 +128,15 @@ Item {
         Item {
             anchors.fill: parent
             anchors.margins: 10
-            anchors.bottom: parent.bottomx
-
+            anchors.bottom: parent.bottom
             InputBox
             {
-
                 id: input
                 Keys.onReturnPressed: chatBox.sendMessage()
                 height: sendButton.height
                 width: parent.width -clearA.width -sendButton.width - 15
                 anchors.left: parent.left
                 anchors.top: rectangle1.bottom
-
 
             }
 
@@ -265,7 +262,7 @@ Item {
                id:dataT
                z:20
                font.pixelSize: 10
-               text: receiver.getCurrentDateTime1()
+               text: receiver.getCurrentDateTime1()+myserver.getTH()
                Connections {
                    target: receiver
                    onSendToQml: {

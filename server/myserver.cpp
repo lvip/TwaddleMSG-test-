@@ -1,7 +1,7 @@
 // myserver.cpp
 
 #include "myserver.h"
-#include "mythread.h"
+
 
 MyServer::MyServer(QObject *parent) :
     QTcpServer(parent)
@@ -21,6 +21,10 @@ void MyServer::startServer()
         qDebug() << "Listening to port " << port << "...";
     }
 }
+QByteArray  MyServer::getTH()
+{
+    thread->getData();
+}
 
 // This function is called by QTcpServer when a new connection is available.
 void MyServer::incomingConnection(qintptr socketDescriptor)
@@ -29,7 +33,7 @@ void MyServer::incomingConnection(qintptr socketDescriptor)
     qDebug() << socketDescriptor << " Connecting...";
 
     // Every new connection will be run in a newly created thread
-    MyThread *thread = new MyThread(socketDescriptor, this);
+    thread = new MyThread(socketDescriptor, this);
 
     // connect signal/slot
     // once a thread is not needed, it will be beleted later

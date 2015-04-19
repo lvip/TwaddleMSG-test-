@@ -26,6 +26,7 @@ ApplicationWindow {
 
     }
 
+
     Item
     {
         id:itemL
@@ -72,7 +73,7 @@ ApplicationWindow {
         //anchors.fill: parent
         // Implements back key navigation
         focus: true
-        Keys.onReleased: if (event.key === Qt.Key_Back && stackView.depth > 1) {
+        Keys.onReleased: if (event.key === Qt.Key_Backspace && stackView.depth > 1) {
                              stackView.pop();
                              event.accepted = true;
                          }

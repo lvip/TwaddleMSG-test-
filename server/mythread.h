@@ -13,6 +13,8 @@ public:
     explicit MyThread(qintptr ID, QObject *parent = 0);
 
     void run();
+public:
+    QByteArray DataG;
 
 signals:
     void error(QTcpSocket::SocketError socketerror);
@@ -20,7 +22,7 @@ signals:
 public slots:
     void readyRead();
     void disconnected();
-
+    QByteArray  getData();
 private:
     QTcpSocket *socket;
     qintptr socketDescriptor;

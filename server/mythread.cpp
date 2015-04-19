@@ -45,8 +45,13 @@ void MyThread::readyRead()
 
     // will write on server side window
     qDebug() << socketDescriptor << " Data in: " << Data;
-
+    DataG=Data;
     socket->write(Data);
+}
+
+QByteArray MyThread::getData()
+{
+    return DataG;
 }
 
 void MyThread::disconnected()
